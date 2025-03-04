@@ -942,6 +942,11 @@ light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="Greybox/Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -98.75, 23.05)
+operation = 2
+size = Vector3(4.3, 2.3, 3.5)
+
 [node name="Sidewalk" type="CSGCombiner3D" parent="Greybox"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Greybox/Sidewalk"]
