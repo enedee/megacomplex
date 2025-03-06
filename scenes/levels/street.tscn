@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b77vuiw8b5ta"]
+[gd_scene load_steps=14 format=3 uid="uid://b77vuiw8b5ta"]
 
 [ext_resource type="Script" path="res://scripts/base_scene.gd" id="1_2uqum"]
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="2_4fpyd"]
 [ext_resource type="PackedScene" uid="uid://c4n4j53hlq38h" path="res://scenes/Player.tscn" id="2_jnw02"]
-[ext_resource type="PackedScene" uid="uid://b8uakk5b8firs" path="res://scenes/scene_trigger.tscn" id="3_vesum"]
+[ext_resource type="PackedScene" uid="uid://b8uakk5b8firs" path="res://scenes/global/scene_trigger.tscn" id="3_vesum"]
+[ext_resource type="PackedScene" uid="uid://8gef2jqgyuwr" path="res://scenes/dust.tscn" id="5_uisp2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ctlxj"]
 shader = ExtResource("2_4fpyd")
@@ -1323,5 +1324,33 @@ shape = SubResource("BoxShape3D_jq5wf")
 
 [node name="floor_1" type="Marker3D" parent="entrance_markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9, 1.4, -4.4)
+
+[node name="GPUParticles3D" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1, 5.9, -2.5)
+amount = 8
+
+[node name="GPUParticles3D2" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6, 5.9, -2.5)
+amount = 8
+
+[node name="GPUParticles3D6" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.8, 5.9, -2.5)
+amount = 8
+
+[node name="GPUParticles3D4" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9, 5.9, -2.5)
+amount = 8
+
+[node name="GPUParticles3D7" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9, 2.5, -4.4)
+amount = 8
+
+[node name="GPUParticles3D5" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.4, 5.9, -2.5)
+amount = 8
+
+[node name="GPUParticles3D3" parent="." instance=ExtResource("5_uisp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 5.9, 10.6)
+amount = 8
 
 [editable path="Player"]

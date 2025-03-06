@@ -14,10 +14,10 @@ func _ready():
 	position_player()
 
 func position_player() -> void:
-	var last_scene = scene_manager.last_scene_name
+	var last_scene = scene_manager.last_scene_name.to_lower().replace('_','').replace(' ','')
 	if last_scene.is_empty():
-		last_scene
+		last_scene = "any"
 	for entrance in entrance_marker.get_children():
-		if entrance is Marker3D and entrance.name == "any" or entrance.name == last_scene:
-			print("I know where you are.")
+		var entrance_name = entrance.name.to_lower().replace('_', '').replace(' ','')
+		if entrance is Marker3D and entrance_name == "any" or entrance_name == last_scene:
 			player.position = entrance.position
