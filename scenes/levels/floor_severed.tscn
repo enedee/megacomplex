@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkmb4y4p23o6x"]
+
+[ext_resource type="Script" path="res://scripts/base_scene.gd" id="1_vnby5"]
+[ext_resource type="PackedScene" uid="uid://b8uakk5b8firs" path="res://scenes/global/scene_trigger.tscn" id="2_81tlc"]
+[ext_resource type="PackedScene" uid="uid://c4n4j53hlq38h" path="res://scenes/Player.tscn" id="3_a5dc4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5xvd8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_aoi5v"]
+sky_material = SubResource("ProceduralSkyMaterial_5xvd8")
+
+[sub_resource type="Environment" id="Environment_ndujj"]
+background_mode = 2
+sky = SubResource("Sky_aoi5v")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_logr6"]
+size = Vector3(1.9, 3.1, 0.4)
+
+[node name="floor_severed" type="Node3D"]
+script = ExtResource("1_vnby5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ndujj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.15, 0, 9.15)
+use_collision = true
+size = Vector3(150, 1, 150)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.15, 5.5, 9.15)
+use_collision = true
+size = Vector3(150, 1, 150)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -83.65, 3.25, 9.15)
+size = Vector3(150, 5.5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 65.45, 3.25, 9.15)
+size = Vector3(150, 5.5, 1.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86265e-07, -1.1, -0.350006)
+operation = 2
+size = Vector3(1.8, 3.2, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.15, 3.25, -65.35)
+size = Vector3(148, 5.5, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.15, 3.25, 83.65)
+size = Vector3(148, 5.5, 1)
+
+[node name="entrance_markers" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.15, 0, 9.15)
+
+[node name="floor_1" type="Marker3D" parent="entrance_markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 72.601)
+
+[node name="scene_trigger" parent="." instance=ExtResource("2_81tlc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63.95, 1.1, 9.15)
+connected_scene = "floor_1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="scene_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0.800003)
+shape = SubResource("BoxShape3D_logr6")
+
+[node name="Player" parent="." instance=ExtResource("3_a5dc4")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 63.3, 1.5, 8.8)

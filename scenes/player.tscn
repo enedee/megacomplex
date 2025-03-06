@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4n4j53hlq38h"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_exgie"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_8hcq3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_afiwt"]
 
@@ -8,7 +8,8 @@
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0, 0)
-script = ExtResource("1_exgie")
+collision_layer = 3
+script = ExtResource("1_8hcq3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 cast_shadow = 0
