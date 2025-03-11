@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Megacomplex"
 run/main_scene="res://scenes/levels/street.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
@@ -78,6 +78,5 @@ sprint={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-shading/overrides/force_vertex_shading=true
 shading/overrides/force_lambert_over_burley=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false

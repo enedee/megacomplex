@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bfcpiepweadu3"]
 
-[ext_resource type="Script" path="res://scripts/transition.gd" id="1_lpwjt"]
+[ext_resource type="Script" uid="uid://ccflojkgpfq25" path="res://scripts/transition.gd" id="1_lpwjt"]
 
 [sub_resource type="Animation" id="Animation_mjsp8"]
 length = 0.001
@@ -51,9 +51,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_deeb7"]
 _data = {
-"RESET": SubResource("Animation_mjsp8"),
-"fade_in": SubResource("Animation_osr0s"),
-"fade_out": SubResource("Animation_crcjw")
+&"RESET": SubResource("Animation_mjsp8"),
+&"fade_in": SubResource("Animation_osr0s"),
+&"fade_out": SubResource("Animation_crcjw")
 }
 
 [node name="Transition" type="CanvasLayer"]
@@ -62,7 +62,7 @@ script = ExtResource("1_lpwjt")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ColorRect")
 libraries = {
-"": SubResource("AnimationLibrary_deeb7")
+&"": SubResource("AnimationLibrary_deeb7")
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
