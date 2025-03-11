@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b77vuiw8b5ta"]
+[gd_scene load_steps=25 format=3 uid="uid://b77vuiw8b5ta"]
 
 [ext_resource type="Script" path="res://scripts/base_scene.gd" id="1_2uqum"]
 [ext_resource type="Shader" path="res://shaders/pixel_art.gdshader" id="2_4fpyd"]
@@ -31,12 +31,52 @@ fog_enabled = true
 fog_light_color = Color(0.0431373, 0.0666667, 0.278431, 1)
 fog_sky_affect = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_of6mi"]
-albedo_color = Color(0.47, 0.3525, 0.3525, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba64k"]
+albedo_color = Color(0.56, 0.359707, 0.1456, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f0o4y"]
+material = SubResource("StandardMaterial3D_ba64k")
+size = Vector2(300, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_skjwx"]
+size = Vector3(300, 0.4, 300)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uttk1"]
+size = Vector3(60, 300, 49.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_irtjy"]
+size = Vector3(60.1, 29.1, 49.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ibfs4"]
+size = Vector3(300, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1504"]
+size = Vector3(300, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytkhf"]
+albedo_color = Color(0.28485, 0.28485, 0.28485, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pdpkv"]
+material = SubResource("StandardMaterial3D_ytkhf")
+size = Vector2(300, 2.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uke5f"]
+size = Vector3(300, 0.4, 2.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6np"]
 emission = Color(0.28, 0.28, 0.28, 1)
 emission_energy_multiplier = 12.71
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3bsvh"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 6.0
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rkem3"]
+top_radius = 0.2
+bottom_radius = 0.2
+radial_segments = 12
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jq5wf"]
 size = Vector3(4.2, 2.3, 3.4)
@@ -53,31 +93,33 @@ mesh = SubResource("QuadMesh_vvfcn")
 environment = SubResource("Environment_tisni")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.831954, 0.480509, -0.277422, 0, 0.5, 0.866025, 0.554844, 0.720493, -0.415977, 0, 0, 0)
+transform = Transform3D(-0.996637, 0.0709608, -0.0409692, 0, 0.5, 0.866025, 0.0819385, 0.863113, -0.498318, 0, 0, 0)
 light_color = Color(0.419253, 0.3976, 0.56, 1)
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(300, 1, 300)
-material = SubResource("StandardMaterial3D_of6mi")
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("PlaneMesh_f0o4y")
 
-[node name="Greybox" type="CSGCombiner3D" parent="."]
-use_collision = true
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 
-[node name="Building" type="CSGBox3D" parent="Greybox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("BoxShape3D_skjwx")
+
+[node name="Greybox" type="Node3D" parent="."]
+
+[node name="Building" type="MeshInstance3D" parent="Greybox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.85, 100.5, -29.85)
-size = Vector3(60.3, 200, 49.5)
+mesh = SubResource("BoxMesh_uttk1")
 
-[node name="Sidewalk" type="CSGBox3D" parent="Greybox/Building"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -99.95, 25.3)
-size = Vector3(4.3, 0.1, 1.1)
+[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Building"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Greybox/Building"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -97.4, 24.9)
-size = Vector3(4.2, 0.3, 0.4)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Building/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -85.75, 0)
+shape = SubResource("BoxShape3D_irtjy")
 
-[node name="Lights" type="CSGCombiner3D" parent="Greybox/Building"]
+[node name="Lights" type="Node3D" parent="Greybox/Building"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Building/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -98.6, 25.1)
@@ -949,327 +991,73 @@ light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Greybox/Building"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -98.75, 23.05)
-operation = 2
-size = Vector3(4.3, 2.3, 3.5)
+[node name="Street" type="Node3D" parent="Greybox"]
 
-[node name="Sidewalk" type="CSGCombiner3D" parent="Greybox"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+mesh = SubResource("BoxMesh_ibfs4")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.15, 0.55, 0)
-size = Vector3(155.7, 0.1, 1)
+[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D"]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Greybox/Sidewalk"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_w1504")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -3.5)
-size = Vector3(300, 0.1, 1)
+mesh = SubResource("BoxMesh_ibfs4")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.15, 0.55, 0)
-size = Vector3(141.7, 0.1, 1)
+[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D2"]
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1, 0.55, 10.65)
-size = Vector3(1, 0.1, 18.7)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_w1504")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 0.55, 10.65)
-size = Vector3(1, 0.1, 18.7)
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, -1.8)
+mesh = SubResource("PlaneMesh_pdpkv")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.5, 1.8)
-size = Vector3(5.4, 0.2, 1)
+[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D3"]
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 0.55, 1.8)
-size = Vector3(19.3, 0.1, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("BoxShape3D_uke5f")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0.5, 0.9)
-size = Vector3(1, 0.2, 0.8)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 0.5, 0.9)
-size = Vector3(1, 0.2, 0.8)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0500011, 0.55, 19.5)
-size = Vector3(27.3, 0.1, 1)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0.55, 10.7)
-size = Vector3(1, 0.1, 9)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0.55, 5.7)
-size = Vector3(11.4, 0.1, 1)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, -1.52083e-05, -0.00095172, 1.53308e-05, 1, 0.000124353, 0.000951718, -0.000124368, 1, -2.8, 0.55, 15.7)
-size = Vector3(11.4, 0.1, 1)
-
-[node name="Streetlight" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
+[node name="Streetlight" type="CSGCombiner3D" parent="Greybox/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight"]
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Street/Streetlight"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
 radius = 0.2
 height = 5.8
 material = SubResource("StandardMaterial3D_tc6np")
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight"]
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Street/Streetlight"]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
 radius = 0.2
 height = 2.6
 material = SubResource("StandardMaterial3D_tc6np")
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Street/Streetlight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
 light_color = Color(1, 0.87451, 0.741176, 1)
 light_energy = 8.385
 shadow_enabled = true
 spot_range = 7.9
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight/SpotLight3D3"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Street/Streetlight/SpotLight3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
 light_color = Color(1, 0.87451, 0.741176, 1)
 
-[node name="Streetlight2" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6, -0.1, 0)
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1, 3.5, -4.6)
+mesh = SubResource("CylinderMesh_3bsvh")
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
+[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D4"]
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight2"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D4/StaticBody3D"]
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight2/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight3" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.4, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight3"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight3/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight4" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight4"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight4"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight4"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight4/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight5" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.3, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight5"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight5"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight5"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight5/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight6" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.9, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight6"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight6"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight6"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight6/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight7" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.7, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight7"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight7"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight7"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight7/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight8" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154, -0.1, 0)
-
-[node name="Streetlight9" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.7, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight9"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight9"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight9"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight9/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight10" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.1, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight10"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight10"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight10"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight10/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="Streetlight11" type="CSGCombiner3D" parent="Greybox/Sidewalk"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.3, -0.1, 0)
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight11"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.55, 3.5, -4.55)
-radius = 0.2
-height = 5.8
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Greybox/Sidewalk/Streetlight11"]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 10.55, 6.4, -3.45)
-radius = 0.2
-height = 2.6
-material = SubResource("StandardMaterial3D_tc6np")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Sidewalk/Streetlight11"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Sidewalk/Streetlight11/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Street/MeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.9, 0.8)
+mesh = SubResource("CylinderMesh_rkem3")
 
 [node name="Dual_Streetlight" type="CSGCombiner3D" parent="Greybox"]
 
@@ -1317,13 +1105,13 @@ collision_mask = 2
 connected_scene = "floor_1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="scene_trigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0499992, 0, -1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0499992, 0, -0.9)
 shape = SubResource("BoxShape3D_jq5wf")
 
 [node name="entrance_markers" type="Node3D" parent="."]
 
 [node name="floor_1" type="Marker3D" parent="entrance_markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9, 1.4, -4.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9, 1.4, -4)
 
 [node name="GPUParticles3D" parent="." instance=ExtResource("5_uisp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1, 5.9, -2.5)
