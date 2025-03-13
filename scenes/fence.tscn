@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://o6qdamypo73d"]
+
+[ext_resource type="Texture2D" uid="uid://d1i2aoyygcbjq" path="res://textures/fence.png" id="1_tphf0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgoru"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_tphf0")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_offset = Vector3(0, 0.75, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0lly4"]
+material = SubResource("StandardMaterial3D_tgoru")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0i6we"]
+size = Vector3(2, 0.2, 2)
+
+[node name="fence" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0lly4")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.11031e-12, 0, -2.11031e-12, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0i6we")

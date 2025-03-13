@@ -1,10 +1,14 @@
-[gd_scene load_steps=27 format=4 uid="uid://b77vuiw8b5ta"]
+[gd_scene load_steps=27 format=3 uid="uid://b77vuiw8b5ta"]
 
 [ext_resource type="Script" uid="uid://bo55kfstb7syw" path="res://scripts/base_scene.gd" id="1_2uqum"]
 [ext_resource type="Shader" uid="uid://cp4ks2sbvt6h3" path="res://shaders/pixel_art.gdshader" id="2_4fpyd"]
 [ext_resource type="PackedScene" uid="uid://c4n4j53hlq38h" path="res://scenes/Player.tscn" id="2_jnw02"]
 [ext_resource type="PackedScene" uid="uid://b8uakk5b8firs" path="res://scenes/global/scene_trigger.tscn" id="3_vesum"]
+[ext_resource type="PackedScene" uid="uid://d17nkb0o5lode" path="res://scenes/streetlight_dual.tscn" id="3_vyr6p"]
+[ext_resource type="PackedScene" uid="uid://b8afaa8fabnxr" path="res://scenes/light_glow.tscn" id="4_tgoru"]
+[ext_resource type="PackedScene" uid="uid://o6qdamypo73d" path="res://scenes/fence.tscn" id="5_0i6we"]
 [ext_resource type="PackedScene" uid="uid://8gef2jqgyuwr" path="res://scenes/dust.tscn" id="5_uisp2"]
+[ext_resource type="PackedScene" uid="uid://csysovcyi2lif" path="res://scenes/streetlight.tscn" id="7_0i6we"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ctlxj"]
 shader = ExtResource("2_4fpyd")
@@ -30,42 +34,6 @@ glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.0431373, 0.0666667, 0.278431, 1)
 fog_sky_affect = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6np"]
-emission = Color(0.28, 0.28, 0.28, 1)
-emission_energy_multiplier = 12.71
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_s7qm2"]
-_surfaces = [{
-"aabb": AABB(-5, 0.6, 10.4, 4.4, 6, 0.4),
-"attribute_data": PackedByteArray("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"),
-"format": 34359738391,
-"material": SubResource("StandardMaterial3D_tc6np"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 210,
-"vertex_data": PackedByteArray("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AACgwGdmxkCamSlBAACgwM3MzEDNzCxBAACgwEdGyEDd3CtBAACgwGdmxkCamSlBAACgwFNT0UDd3CtBAACgwM3MzEDNzCxBAACgwEdGyEDd3CtBAACgwM3MzEDNzCxBP0A8wEdGyEDd3CtBAACgwEdGyEBXVidBAABAwGdmxkCamSlBYPs9wLZox0DLYShBAACgwEdGyEBXVidBYPs9wLZox0DLYShBP0A8wEdGyEBXVidBP0A8wEdGyEBXVidBMzMzwM3MzEBnZiZBAACgwM3MzEBnZiZBAABAwGdmxkCamSlBAACgwGdmxkCamSlB3UU+wHhDx0B0pCpBAACgwFNT0UDd3CtBAACgwDQz00CamSlBmJkZvzMz00CamSlB3UU+wHhDx0B0pCpBAACgwEdGyEDd3CtBP0A8wEdGyEDd3CtBmJkZv2ZmxkCamSlBJyYqwEdGyEBXVidBiSAowHhDx0DAjihBP0A8wEdGyEDd3CtBAACgwM3MzEDNzCxBMzMzwM3MzEDNzCxBAACgwEdGyEBXVidBAACgwGdmxkCamSlBAABAwGdmxkCamSlBAACgwFNT0UBXVidBAACgwDQz00CamSlBAACgwGdmxkCamSlBP0A8wEdGyEBXVidBAACgwM3MzEBnZiZBAACgwEdGyEBXVidBMzMzwM3MzEBnZiZBAACgwFNT0UBXVidBAACgwM3MzEBnZiZBAACgwM3MzEBnZiZBAACgwFNT0UBXVidBAACgwGdmxkCamSlBAACgwEdGyEBXVidBAACgwM3MzEBnZiZBAACgwGdmxkCamSlBMzMzwM3MzEBnZiZBmJkZv83MzEBnZiZBAACgwFNT0UBXVidBAACgwDQz00CamSlBAACgwFNT0UBXVidBmJkZv1NT0UBXVidBmJkZv83MzEBnZiZBmJkZv1NT0UBXVidBAACgwFNT0UBXVidB/38AAP///7//fwAA////v/9/AAD///+//z//PwAAAIDLW7FJ/BD5lb4y/38AAJ/mvjL/fwAAn+bLW7FJ/BD5lWpkamSMCCSqeHD/fwAAwsdqZGpkjAgkqiaH/38mB/+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+/bNukF07c3L7//3fwd/D/v///vrK+sv+//7//P74SoHb//76yAABfGQjq/3////sK/38AAP///7//fwAA////v/9/AAD///+/AADVyP//aqT//3fwd/D/vwAAJgf+/2u8Kbf/fyk3/79qpGpkCzL8wQjq/38Jav+/Jof/fyYH/78pt/9/KTf/v3hw/38AAMLH//938Hfw/79s26QXTtzcvgAAJgf+/2u8//++sgAAXxm90kEtYAzPFmzbpBcOH7kd/7//P74SoHa90kEtYAzPFv//vrIAAF8Z/7//P0Btn7YI6v9/CWr/v0CtvlJhUi/GaqRqZAsy/MFArb5SYVIvxgjq/38Jav+/Jof/fyYH/79qpGpkCzL8wSm3/38pN/+/AAAmB/7/a7yUG2okBfwF2QAA1cj//2qk/z//PwAAAIAAAPWV///6ikEtQS2e8y/plBtqJAX8BdlBLUEtnvMv6QAA9ZX///qK/38AAP///7//fwAA////v/9/AAD///+//z//PwAAAIC+Mv9/AACf5gAA9ZX///qKamRqZIwIJKp4cP9/AADCx74y/38AAJ/mAADVyP//aqSUG2okBfwF2QAA9ZX///qK/38AAP///7//fwAA////v/9/AAD///+//78AAP+/AABs26QXQEMRCQlqAAAI6gAA////f/9/QS3///9//39BLf///3//f0Et////f4HaAAD///9/gdoAAP///3+B2gAAKbf//9XIAID/f3fwd/D//4aP//+HDwCA////f/9/vhL///9//3++Ev///3//f74S////f3ylAAD///9/fKUAAP///398pQAA/78AAP9//5///wAA/38AgGzbpBdVff2W/7//P0DtXwkJagAACOoAAL3SQS2eLTAGbNukF1V9/Zb//wAA/38AgAAAJgcXgYOA/3938Hfw////f76yvrL///9/1cgpN////7//P76SXslArb5Sn3PO1v9/vjL/f17ZJof/fxeBev//f/9//3////9/vrK+sv///3++Mv9/XtlArb5Sn3PO1mqkamR7dw3oaqRqZHt3Degmh/9/F4F6//9/eHD/fzv4/7//P76SXsn/f74y/39e2QlqAAD/fwS1////f/9/vdL///9//3+90v///3//f73S////f4Ha//////9/gdr//////3+B2v//aqRqZHt3Dej/f3hw/387+P9/vjL/f17ZJof/fxeBev//f76yvrL///9/eHD/fzv4////f/9/QO3///9//39A7f///3//f0Dt////f3yl//////9/fKX//////398pf///3/VyCk3////f76yvrL///9//3//f///AAD/f////78AAP9/////vwAA/3////+//3+HD/9/wsf/fyk3/3+U28tbsUnjh/fWAAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+//38pN/9/lNv/f/9//3///2pkamSMiCTqQE0AAL4yAAD/P/8/vhJfCUEtQS1g0jAGQE0AAL4yAABBLUEtYNIwBpQbaiRHxQMOlBtqJJCAW5MAACYHF4GDgHfwAAD/f8OH/z//P0BtXsn/f4cP/3/Cx8tbsUnjh/fW/3/VyCk3//+Gj///hw8AgP9/d/B38P//y1uxSeOH99b/fyk3/3+U22pkamSMiCTqCWoAAAjqAABs26QXQEMRCb3SQS2eLTAGamRqZIyIJOr/f/9//3///yaH/38XgXr/QE0AAL4yAAD/f4cPhw/+f/8//z++El8JAAD/f////78AAP9/////vwAA/3////+/lBtqJJCAW5N38AAA/3/Dh0BNAAD/f5+mAAAmBxeBg4BAzf//vrIAgHfwAAD/f8OHAAD/f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAAmBxeBg4D//wAA/38AgEDN//++sgCAho///4cPAIBAzf//vrIAgCm3///VyACA//8AAP9/AIApt///1cgAgEDN//++sgCA")
-}]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_s7qm2"]
-height = 4.0
-radius = 0.3
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_y8v7m"]
-_surfaces = [{
-"aabb": AABB(10.35, 0.6, -4.75, 0.4, 6, 2.6),
-"attribute_data": PackedByteArray("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"),
-"format": 34359738391,
-"material": SubResource("StandardMaterial3D_tc6np"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 198,
-"vertex_data": PackedByteArray("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iokmQUdGyECamQnAzcwoQWZmxkA0M4vApnUoQZmuxkBne4vAzcwoQTMz00AAAJjAzcwoQTQz00CamQnAiokmQVNT0UAAAJjAiokmQVNT0UCamQnAmpklQc3MzECamQnAmpklQc3MzECamZHAiokmQUdGyEAUE43AmpklQc3MzECamQnAiokmQUdGyECamQnAiokmQUdGyECamQnAmpklQc3MzECamQnAzcwoQWdmxkCamQnATQMrQbQ7yECzKpbAEBArQUdGyEAAAJjAzcwoQWZmxkAAAJjAzcwoQTQz00CamQnAiokmQVNT0UCamQnAiokmQVNT0UAAAJjAiokmQUdGyECamQnAzcwoQWdmxkCamQnAzcwoQWZmxkA0M4vAiokmQVNT0UCamQnAzcwoQTQz00CamQnAzcwoQWdmxkCamQnAiokmQVNT0UCamQnAmpklQc3MzECamZHAmpklQc3MzEAAAJjAiokmQVNT0UAAAJjAmpklQc3MzEAAAJjAzcwoQc3MzEAAAJjAzcwoQc3MzEAAAJjAmpklQc3MzEAAAJjAiokmQUdGyEAAAJjAiokmQUdGyEAgIJbAiokmQUdGyEAAAJjAmpklQc3MzEAAAJjAiokmQUdGyEAgIJbAmpklQc3MzEAAAJjAmpklQc3MzECamZHAiokmQUdGyECamQnApnUoQZmuxkBne4vAiokmQUdGyEAUE43AEBArQVNT0UAAAJjAzcwoQTMz00AAAJjAzcwoQc3MzEAAAJjA1chqZNdcuLt38P9/eHD/v76y/3++Mv+/SC/KCaUg10WUG9VI11xZMwAA1cgpN/8//z9qZPkD9eiCWr5SYAz+3Alq/38AAPrK/3//PwAA/78Jav9/AAD6yoJavlJgDP7c/38AAP///7//fwAA////v/9/AAD///+/vrL/f74y/78Jav9/AAD6yv9//z8AAP+///8AQP6//7/L230lKcrxw///hw938P+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+///8AQP6//7938P9/eHD/v///2Hgmh/+/y9t9JSnK8cNIL8oJIuL5sv//hw938P+//3//PwAA/798pbFJ8TyAt76y/3++Mv+/y9t9JSnK8cP//wBA/r//v+beTUVNo+3EvrL/f74y/798pbFJ8TyAt9XIamTXXLi7///YeCaH/7/m3k1FTaPtxP//AED+v/+/d/D/f3hw/7/VyGpk11y4u///2Hgmh/+//38AAP///7//fwAA////v/9/AAD///+/KTf/fwAAlJv/P2pk+QP16Alq/38AAPrKAADVyCk3/z///4cPAADDR0gvygmlINdFAACGj///O/iUG9VIC/+TkSYH/38AAJKDJgf/fwAAkoP/P2pk+QP16Ck3/38AAJSblBvVSAv/k5EAAIaP//87+AAA1cj//5TbKTf/fwAAlJsAAIaP//87+CYH/38AAJKD/38AAP///7//fwAA////v/9/AAD///+/KbcqN9TIlNvm3k1F8aih6HfweHCGjzv4/3//P4HaXsmGj4cPd/DCx3ylsUkO0unaQM2+skBNn+Ypt9XIKTeU24aPd/CHD8LH/////3ylQO3/////fKVA7f////98pUDt/////4JaQO3/////glpA7f////+CWkDtKbcqN9TIlNvL230lDMP61ebeTUXxqKHo/////4HavdL/////gdq90v////+B2r3Sd/B4cIaPO/jm3k1F8aih6P//2Hjnfvf/QM2+skBNn+Z38Hhwho87+P//2Hjnfvf/fKWxSQ7S6doptyk31ciU29XIamS0q2ruQM2+skBNn+b//9h45373/////3//f//////YeOd+9//VyGpktKtq7v///3//f///KbfVyCk3lNt4cHfwhw87uIaPd/CHD8LHho+HD3fwwscptyk31ciU23ylsUkO0una/3//f////z//f/9/////P/9//3////8/KbfVyCk3lNtAzb6yQE2f5v///3//f///////f/9////VyGpktKtq7im3KTfVyJTb/3//f////z//f/9/////P/9//3////8//3//f////z//f/9/////P/9//3////8//3//f////z//f/9/////P/9//3////8//z9qZLemE5MmB/9/534HgIcPeHCGj8OH1UjVyCk3aqS+Mr6yQE1emQAA/3//fwCA/z//P/8//x+UG9VI11w6HkgvygnTHnIs/////30lQS3/////fSVBLf////99JUEt/////4HaQS3/////gdpBLf////+B2kEtQE2+Mr4yoCb/f/8/fSWgNoJavlKeLQAjho938IcPwsd4cHfwhw87uNVI1cgpN2qkvjK+skBNXpmHD3hwho/DhyYH/3/nfgeA/z9qZLemE5OHD3hwho/Dh0BNvjJAzZ+m/3//f////z//f/9/////P/9//3////8/y9t9JQzD+tUptyo31MiU20gvyglZ7CXWeHB38IcPO7i+Mr6yQE1emdVI1cgpN2qkQE2+Mr4yoCaGj4cPhw/DR/9//z99JaA2/3//f////z//f/9/////P/9//3////8/vjK+skBNXpkmB/9/534HgAAA/3//fwCA/////3ylvhL/////fKW+Ev////98pb4S/////4JavhL/////glq+Ev////+CWr4SlBvVSBukk5H/P/8//7//nwAA/3//fwCAlBvVSBukk5EAAP9//38AgCYH/3/nfgeAQE2+Mr4yoCaCWr5Sni0AI/8/amS3OqAU/////30lvdL/////fSW90v////99Jb3S")
-}]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_y8v7m"]
-height = 3.75
-radius = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba64k"]
 albedo_color = Color(0.56, 0.359707, 0.1456, 1)
@@ -101,6 +69,9 @@ size = Vector3(300, 0.4, 2.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jq5wf"]
 size = Vector3(4.2, 2.3, 3.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tgoru"]
+size = Vector3(0.3, 2.2, 7.9)
 
 [node name="street" type="Node3D"]
 script = ExtResource("1_2uqum")
@@ -994,280 +965,58 @@ light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="Streetlight_Dual" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.85, -100.5, 29.85)
-mesh = SubResource("ArrayMesh_s7qm2")
-skeleton = NodePath("../..")
+[node name="Streetlight_Dual" parent="Greybox/Lights" instance=ExtResource("3_vyr6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.65, -100.6, 24.75)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Greybox/Lights/Streetlight_Dual"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.9, 6.2, 10.6)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
+[node name="MeshInstance3D9" parent="Greybox/Lights/Streetlight_Dual" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.899976, 6, 10.6)
+skeleton = NodePath("..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight_Dual/SpotLight3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
+[node name="MeshInstance3D10" parent="Greybox/Lights/Streetlight_Dual" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59998, 6, 10.6)
+skeleton = NodePath("..")
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Greybox/Lights/Streetlight_Dual"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.6, 6.2, 10.6)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Greybox/Lights/Streetlight_Dual/SpotLight3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight_Dual"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight_Dual/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 2.6, 10.6)
-shape = SubResource("CylinderShape3D_s7qm2")
-
-[node name="Streetlight" type="MeshInstance3D" parent="Greybox/Lights"]
+[node name="Streetlight" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.85, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
+[node name="MeshInstance3D3" parent="Greybox/Lights/Streetlight" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.5)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight2" type="MeshInstance3D" parent="Greybox/Lights"]
+[node name="Streetlight2" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.45, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
+[node name="MeshInstance3D3" parent="Greybox/Lights/Streetlight2" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.4)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight2/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
+[node name="Streetlight3" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.25, -100.6, 29.85)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight2"]
+[node name="MeshInstance3D4" parent="Greybox/Lights/Streetlight3" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.4)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
+[node name="Streetlight4" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.75, -100.6, 29.85)
 
-[node name="Streetlight3" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.35, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
+[node name="MeshInstance3D5" parent="Greybox/Lights/Streetlight4" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.4)
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
+[node name="Streetlight5" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.45, -100.6, 29.85)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight3/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
+[node name="MeshInstance3D6" parent="Greybox/Lights/Streetlight5" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.4)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight3"]
+[node name="Streetlight6" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.45, -100.6, 29.85)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight3/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
+[node name="MeshInstance3D7" parent="Greybox/Lights/Streetlight6" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.4)
 
-[node name="Streetlight9" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.85, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
+[node name="Streetlight7" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.35, -100.6, 29.85)
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight9"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight9/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight9"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight9/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight10" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.25, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight10"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight10/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight10"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight10/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight11" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.35, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight11"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight11/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight11"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight11/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight4" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.95, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight4"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight4/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight4/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight5" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.45, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight5"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight5/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight5/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight6" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.05, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight6"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight6/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight6/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight7" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.95, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight7"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight7/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight7/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
-
-[node name="Streetlight8" type="MeshInstance3D" parent="Greybox/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.55, -100.6, 29.85)
-mesh = SubResource("ArrayMesh_y8v7m")
-skeleton = NodePath("../../Street")
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Greybox/Lights/Streetlight8"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.55, 6.2, -2.5)
-light_color = Color(1, 0.87451, 0.741176, 1)
-light_energy = 8.385
-shadow_enabled = true
-spot_range = 7.9
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Streetlight8/SpotLight3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999999)
-light_color = Color(1, 0.87451, 0.741176, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Lights/Streetlight8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Lights/Streetlight8/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.475, -4.6)
-shape = SubResource("CylinderShape3D_y8v7m")
+[node name="MeshInstance3D8" parent="Greybox/Lights/Streetlight7" instance=ExtResource("4_tgoru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.55, 6, -2.4)
 
 [node name="Ground" type="MeshInstance3D" parent="Greybox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -1320,8 +1069,32 @@ mesh = SubResource("PlaneMesh_pdpkv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("BoxShape3D_uke5f")
 
+[node name="Fences" type="Node3D" parent="Greybox"]
+
+[node name="fence" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(76.9511, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -57.128, 1.5, -5.9)
+
+[node name="fence4" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(33.9354, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 113.932, 1.5, -5.9)
+
+[node name="fence2" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(41.86, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -49.6, 1.5, 1.9)
+
+[node name="fence3" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(70.965, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 72, 1.5, 1.9)
+skeleton = NodePath("../../../../..")
+
+[node name="fence5" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(-2.18557e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -5, -4.37114e-08, 1.91069e-15, 1, 1.5, 6.8)
+
+[node name="fence6" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(-2.18557e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -5, -4.37114e-08, 1.91069e-15, -7.8, 1.5, 6.8)
+
+[node name="fence7" parent="Greybox/Fences" instance=ExtResource("5_0i6we")]
+transform = Transform3D(4.5, -2.90017e-15, 1.26771e-22, 0, -4.37114e-08, -1, 1.30508e-14, 1, -4.37114e-08, -3.4, 1.5, 11.8)
+
 [node name="Player" parent="." instance=ExtResource("2_jnw02")]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -11.2, 1.5, 17.1)
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -4.9, 1.5, 8.6)
 
 [node name="scene_trigger" parent="." instance=ExtResource("3_vesum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9, 1.8, -5.5)
@@ -1367,5 +1140,18 @@ amount = 8
 [node name="GPUParticles3D3" parent="Particles" instance=ExtResource("5_uisp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 5.9, 10.6)
 amount = 8
+
+[node name="invisible_wall" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.12, 1.6, -2)
+shape = SubResource("BoxShape3D_tgoru")
+
+[node name="invisible_wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.8, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="invisible_wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.12, 1.6, -2)
+shape = SubResource("BoxShape3D_tgoru")
 
 [editable path="Player"]
