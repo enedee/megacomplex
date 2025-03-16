@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://5g3l7gu5tgcl"]
+
+[ext_resource type="Texture2D" uid="uid://dprto12ii20ui" path="res://textures/office_wall.png" id="1_yntiu"]
+
+[resource]
+albedo_texture = ExtResource("1_yntiu")
+uv1_scale = Vector3(1, 0.29, 1)
+uv1_triplanar = true
+texture_filter = 0
