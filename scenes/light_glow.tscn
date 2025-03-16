@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8afaa8fabnxr"]
+
+[ext_resource type="Texture2D" uid="uid://bor4o03d0t5gy" path="res://textures/light_glow2.png" id="1_7ikmk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyr6p"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.985, 0.91, 0.615686)
+albedo_texture = ExtResource("1_7ikmk")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y8v7m"]
+material = SubResource("StandardMaterial3D_vyr6p")
+orientation = 2
+
+[node name="MeshInstance3D3" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_y8v7m")
+skeleton = NodePath("../../Streetlight_Dual")
