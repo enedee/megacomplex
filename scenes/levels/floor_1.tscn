@@ -1,11 +1,14 @@
-[gd_scene load_steps=34 format=4 uid="uid://dapp6yedmxv2p"]
+[gd_scene load_steps=43 format=4 uid="uid://dapp6yedmxv2p"]
 
 [ext_resource type="Script" uid="uid://bo55kfstb7syw" path="res://scripts/base_scene.gd" id="1_gn4i8"]
 [ext_resource type="Shader" uid="uid://cp4ks2sbvt6h3" path="res://shaders/pixel_art.gdshader" id="2_dlw06"]
 [ext_resource type="PackedScene" uid="uid://b8uakk5b8firs" path="res://scenes/global/scene_trigger.tscn" id="3_8m3yt"]
+[ext_resource type="Texture2D" uid="uid://b2ptpcbvnlcby" path="res://textures/wip_wall.png" id="3_iqa3v"]
 [ext_resource type="Texture2D" uid="uid://bor4o03d0t5gy" path="res://textures/light_glow2.png" id="4_pc4wu"]
+[ext_resource type="Texture2D" uid="uid://7cbvsectn163" path="res://textures/door_elevator.png" id="4_unyho"]
 [ext_resource type="PackedScene" uid="uid://8gef2jqgyuwr" path="res://scenes/dust.tscn" id="4_wao7n"]
 [ext_resource type="PackedScene" uid="uid://c4n4j53hlq38h" path="res://scenes/Player.tscn" id="5_ujjnd"]
+[ext_resource type="Texture2D" uid="uid://grfglm6eym6i" path="res://textures/complex_entrance.png" id="5_unyho"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4tail"]
 shader = ExtResource("2_dlw06")
@@ -62,6 +65,33 @@ size = Vector3(3.9, 5.1, 2.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pc4wu"]
 size = Vector3(1.8, 5.1, 5.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uk615"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_iqa3v")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qnn5w"]
+material = SubResource("StandardMaterial3D_uk615")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnn5w"]
+albedo_texture = ExtResource("4_unyho")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vscnt"]
+material = SubResource("StandardMaterial3D_qnn5w")
+size = Vector2(1.4, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vscnt"]
+cull_mode = 2
+albedo_texture = ExtResource("5_unyho")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wi4sm"]
+material = SubResource("StandardMaterial3D_vscnt")
+size = Vector2(4, 2.2)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_73gg3"]
 load_path = "res://.godot/imported/light_glow2.png-c5c1714d7dfd652640a6caa0720bd4c3.s3tc.ctex"
@@ -205,13 +235,64 @@ shape = SubResource("BoxShape3D_pc4wu")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.2, 3.05, 12.55)
 shape = SubResource("BoxShape3D_pc4wu")
 
-[node name="Lights" type="Node3D" parent="."]
+[node name="Doors" type="Node3D" parent="Greybox"]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 16.7)
-light_color = Color(1, 0.87451, 0.741176, 1)
-shadow_enabled = true
-omni_range = 13.055
+[node name="WIP" type="Node3D" parent="Greybox/Doors"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -3.79, 1.2, 5.9)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -3.79, 1.2, 0.6)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -3.79, 1.2, -3.9)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -3.79, 1.2, -8.3)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 3.71, 1.2, -8.3)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 3.71, 1.2, -12.3)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 3.71, 1.2, -3.9)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 3.71, 1.2, 0.600001)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Greybox/Doors/WIP"]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 3.71, 1.2, 6)
+mesh = SubResource("PlaneMesh_qnn5w")
+skeleton = NodePath("../../..")
+
+[node name="Elevator" type="MeshInstance3D" parent="Greybox/Doors"]
+transform = Transform3D(-4.37114e-08, 1, -4.47035e-08, 0, -4.47035e-08, -1, -1, -4.37114e-08, 1.95405e-15, -3.79, 1.2, -12.32)
+mesh = SubResource("PlaneMesh_vscnt")
+
+[node name="Entrance" type="MeshInstance3D" parent="Greybox/Doors"]
+transform = Transform3D(1, 0, 0, 0, -4.47035e-08, -1, 0, 1, -4.47035e-08, 0, 1.1, 12.6)
+mesh = SubResource("PlaneMesh_wi4sm")
+
+[node name="Lights" type="Node3D" parent="."]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 5, -9.8)
@@ -304,7 +385,7 @@ spot_attenuation = -0.12
 mesh = SubResource("PlaneMesh_unyho")
 
 [node name="scene_trigger" parent="." instance=ExtResource("3_8m3yt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 15.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 12.1)
 connected_scene = "street"
 
 [node name="outside" type="CollisionShape3D" parent="scene_trigger"]
@@ -322,7 +403,7 @@ shape = SubResource("BoxShape3D_csyv7")
 [node name="entrance_markers" type="Node3D" parent="."]
 
 [node name="street" type="Marker3D" parent="entrance_markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 13.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 9.1)
 
 [node name="floor_severed" type="Marker3D" parent="entrance_markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 1, -12.3)

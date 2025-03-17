@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkmb4y4p23o6x"]
+[gd_scene load_steps=22 format=3 uid="uid://bkmb4y4p23o6x"]
 
 [ext_resource type="Script" uid="uid://bo55kfstb7syw" path="res://scripts/base_scene.gd" id="1_vnby5"]
 [ext_resource type="PackedScene" uid="uid://b8uakk5b8firs" path="res://scenes/global/scene_trigger.tscn" id="2_81tlc"]
 [ext_resource type="Shader" uid="uid://cp4ks2sbvt6h3" path="res://shaders/pixel_art.gdshader" id="2_n5ttu"]
 [ext_resource type="PackedScene" uid="uid://c4n4j53hlq38h" path="res://scenes/Player.tscn" id="3_a5dc4"]
+[ext_resource type="Texture2D" uid="uid://hessgalghfo4" path="res://textures/plant_pot.png" id="5_7efnu"]
 [ext_resource type="Material" uid="uid://5g3l7gu5tgcl" path="res://mats/office_wall.tres" id="5_ofn3a"]
+[ext_resource type="Texture2D" uid="uid://bbg3yfxgvy4hx" path="res://textures/door_basic.png" id="6_shy15"]
+[ext_resource type="Texture2D" uid="uid://b56ljfk6wyphx" path="res://textures/door_elevator2.png" id="7_shy15"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ofn3a"]
 shader = ExtResource("2_n5ttu")
@@ -30,6 +33,35 @@ glow_enabled = true
 size = Vector3(0.5, 2.4, 2.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofn3a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7g7v"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_7efnu")
+texture_filter = 0
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nyyg6"]
+material = SubResource("StandardMaterial3D_n7g7v")
+size = Vector2(1, 2)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu5qb"]
+albedo_texture = ExtResource("6_shy15")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hs053"]
+material = SubResource("StandardMaterial3D_mu5qb")
+size = Vector2(1.3, 2.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyyg6"]
+albedo_texture = ExtResource("7_shy15")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mu5qb"]
+material = SubResource("StandardMaterial3D_nyyg6")
+size = Vector2(1.4, 2.4)
 
 [node name="floor_severed" type="Node3D"]
 script = ExtResource("1_vnby5")
@@ -67,7 +99,6 @@ use_collision = true
 
 [node name="floor" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -47.4)
-visible = false
 size = Vector3(150, 1, 100)
 
 [node name="roof" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
@@ -111,6 +142,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.7, 1.75005, -61.25)
 size = Vector3(18.7, 3.5, 26.7)
 material = ExtResource("5_ofn3a")
 
+[node name="CSGBox3D14" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.6, 1.75005, -54.8)
+size = Vector3(13.5, 3.5, 13.8)
+material = ExtResource("5_ofn3a")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9, 1.75005, -72.15)
+size = Vector3(13.9, 3.5, 48.5)
+material = ExtResource("5_ofn3a")
+
 [node name="CSGBox3D5" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.35, 1.75005, -23.05)
 size = Vector3(27.6, 3.5, 9.3)
@@ -126,9 +167,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 1.75005, -57.65)
 size = Vector3(7.9, 3.5, 12.7)
 material = ExtResource("5_ofn3a")
 
+[node name="CSGBox3D13" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9, 1.75005, -87.15)
+size = Vector3(32.1, 3.5, 18.5)
+material = ExtResource("5_ofn3a")
+
 [node name="CSGBox3D12" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1.75005, -82.65)
-size = Vector3(11.9, 3.5, 15.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.85, 1.75005, -83.35)
+size = Vector3(13.6, 3.5, 17.1)
 material = ExtResource("5_ofn3a")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
@@ -302,6 +348,126 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.0032, 4.8, -71.9094)
 light_energy = 5.0
 omni_range = 10.0
 omni_attenuation = 1.12
+
+[node name="OmniLight3D25" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.0032, 4.8, -79.8094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D26" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.0032, 4.8, -86.6094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D27" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.0032, 4.8, -94.1094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D28" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1032, 4.8, -94.1094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D29" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5032, 4.8, -94.1094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D30" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5032, 4.8, -86.1094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D31" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5032, 4.8, -79.2094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D32" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2032, 4.8, -76.2094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D33" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2032, 4.8, -76.2094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D34" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.1032, 4.8, -76.2094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="OmniLight3D35" type="OmniLight3D" parent="Greybox/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8032, 4.8, -76.2094)
+light_energy = 5.0
+omni_range = 10.0
+omni_attenuation = 1.12
+
+[node name="Decoration" type="Node3D" parent="Greybox"]
+
+[node name="Plants" type="Node3D" parent="Greybox/Decoration"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Decoration/Plants"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90001, 1, -24.4)
+mesh = SubResource("PlaneMesh_nyyg6")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Decoration/Plants"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69999, 1, -24.4)
+mesh = SubResource("PlaneMesh_nyyg6")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Decoration/Plants"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, 1, -30.3)
+mesh = SubResource("PlaneMesh_nyyg6")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Decoration/Plants"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.7, 1, -48.5)
+mesh = SubResource("PlaneMesh_nyyg6")
+skeleton = NodePath("../../..")
+
+[node name="Doors" type="Node3D" parent="Greybox/Decoration"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.47035e-08, -1, 4.37114e-08, 1, -4.47035e-08, 8, 1.3, -18.4824)
+mesh = SubResource("PlaneMesh_hs053")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.47035e-08, -1, 4.37114e-08, 1, -4.47035e-08, 25, 1.3, -31.2824)
+mesh = SubResource("PlaneMesh_hs053")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(-1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -4.47035e-08, -1, 4.37114e-08, -1, 4.47035e-08, 65.7, 1.3, -15.0824)
+mesh = SubResource("PlaneMesh_hs053")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.47035e-08, -1, 4.37114e-08, 1, -4.47035e-08, 54, 1.3, -96.3824)
+mesh = SubResource("PlaneMesh_hs053")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(2.13163e-14, 1, -4.47035e-08, 4.37114e-08, -4.47035e-08, -1, -1, 7.10543e-15, -4.37114e-08, 19.9, 1.3, -76.2823)
+mesh = SubResource("PlaneMesh_hs053")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(2.13163e-14, 1, -4.47035e-08, 4.37114e-08, -4.47035e-08, -1, -1, 7.10543e-15, -4.37114e-08, 71.6, 1.3, -76.2823)
+mesh = SubResource("PlaneMesh_hs053")
+
+[node name="entrance" type="MeshInstance3D" parent="Greybox/Decoration/Doors"]
+transform = Transform3D(-1, 1.31134e-07, -4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -1.31134e-07, -1, 4.37114e-08, -0.1, 1.2, -15.01)
+mesh = SubResource("PlaneMesh_mu5qb")
 
 [node name="Player" parent="." instance=ExtResource("3_a5dc4")]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 34.3, 1, -24.4)
