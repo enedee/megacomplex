@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://x17hcd8hp7g"]
+
+[ext_resource type="Texture2D" uid="uid://bor4o03d0t5gy" path="res://textures/light_glow2.png" id="1_wid3u"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.985, 0.91, 0.615686)
+albedo_texture = ExtResource("1_wid3u")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true

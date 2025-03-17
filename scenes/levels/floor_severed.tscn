@@ -67,10 +67,12 @@ use_collision = true
 
 [node name="floor" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -47.4)
+visible = false
 size = Vector3(150, 1, 100)
 
 [node name="roof" type="CSGBox3D" parent="Greybox/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -47.4)
+visible = false
 size = Vector3(150, 1, 100)
 material = SubResource("StandardMaterial3D_ofn3a")
 
