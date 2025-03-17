@@ -1,20 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://o6qdamypo73d"]
+[gd_scene load_steps=4 format=3 uid="uid://o6qdamypo73d"]
 
-[ext_resource type="Texture2D" uid="uid://d1i2aoyygcbjq" path="res://textures/fence.png" id="1_tphf0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgoru"]
-transparency = 1
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_tphf0")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_offset = Vector3(0, 0.75, 0)
-uv1_triplanar = true
-uv1_world_triplanar = true
-texture_filter = 0
+[ext_resource type="Material" uid="uid://fr6ocfuyyyqg" path="res://mats/fence.tres" id="1_tphf0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0lly4"]
-material = SubResource("StandardMaterial3D_tgoru")
+material = ExtResource("1_tphf0")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0i6we"]
 size = Vector3(2, 0.2, 2)
