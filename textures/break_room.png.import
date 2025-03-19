@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgqaqvwik82gk"
-path.s3tc="res://.godot/imported/glass_transparent.png-96c54f9139cbbc74471b5cddeb3fde17.s3tc.ctex"
+uid="uid://dl6w01dv3suo8"
+path.s3tc="res://.godot/imported/break_room.png-0f537a4adbf8b949d9761c25b9873b3d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/glass_transparent.png"
-dest_files=["res://.godot/imported/glass_transparent.png-96c54f9139cbbc74471b5cddeb3fde17.s3tc.ctex"]
+source_file="res://textures/break_room.png"
+dest_files=["res://.godot/imported/break_room.png-0f537a4adbf8b949d9761c25b9873b3d.s3tc.ctex"]
 
 [params]
 

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://8gef2jqgyuwr" path="res://scenes/dust.tscn" id="4_wao7n"]
 [ext_resource type="PackedScene" uid="uid://c4n4j53hlq38h" path="res://scenes/Player.tscn" id="5_ujjnd"]
 [ext_resource type="Texture2D" uid="uid://grfglm6eym6i" path="res://textures/complex_entrance.png" id="5_unyho"]
+[ext_resource type="Material" uid="uid://x17hcd8hp7g" path="res://mats/light.tres" id="6_uk615"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4tail"]
 shader = ExtResource("2_dlw06")
@@ -93,21 +94,8 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_vscnt")
 size = Vector2(4, 2.2)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_73gg3"]
-load_path = "res://.godot/imported/light_glow2.png-c5c1714d7dfd652640a6caa0720bd4c3.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78f5t"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.985, 0.91, 0.615686)
-albedo_texture = SubResource("CompressedTexture2D_73gg3")
-texture_filter = 0
-billboard_mode = 1
-billboard_keep_scale = true
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_iqa3v"]
-material = SubResource("StandardMaterial3D_78f5t")
+material = ExtResource("6_uk615")
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqa3v"]
@@ -157,6 +145,9 @@ size = Vector3(3.9, 2.8, 0.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_csyv7"]
 size = Vector3(0.4, 2.4, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uk615"]
+size = Vector3(3.9, 5.2, 1)
 
 [sub_resource type="Gradient" id="Gradient_uomnu"]
 offsets = PackedFloat32Array(0, 0.756863, 1)
@@ -386,6 +377,8 @@ mesh = SubResource("PlaneMesh_unyho")
 
 [node name="scene_trigger" parent="." instance=ExtResource("3_8m3yt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 12.1)
+collision_layer = 0
+collision_mask = 2
 connected_scene = "street"
 
 [node name="outside" type="CollisionShape3D" parent="scene_trigger"]
@@ -394,11 +387,23 @@ shape = SubResource("BoxShape3D_4i0p6")
 
 [node name="scene_trigger2" parent="." instance=ExtResource("3_8m3yt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7, 1, -12.2)
+collision_layer = 0
+collision_mask = 2
 connected_scene = "floor_severed"
 
 [node name="floor_severed" type="CollisionShape3D" parent="scene_trigger2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0999999, 0.2, -0.0999994)
 shape = SubResource("BoxShape3D_csyv7")
+
+[node name="scene_trigger3" parent="." instance=ExtResource("3_8m3yt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0.5, -15.7)
+collision_layer = 0
+collision_mask = 2
+connected_scene = "floor_2"
+
+[node name="floor_2" type="CollisionShape3D" parent="scene_trigger3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 2.1, 0)
+shape = SubResource("BoxShape3D_uk615")
 
 [node name="entrance_markers" type="Node3D" parent="."]
 
@@ -407,6 +412,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 9.1)
 
 [node name="floor_severed" type="Marker3D" parent="entrance_markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 1, -12.3)
+
+[node name="floor_2" type="Marker3D" parent="entrance_markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -14)
 
 [node name="dust" parent="." instance=ExtResource("4_wao7n")]
 amount = 124

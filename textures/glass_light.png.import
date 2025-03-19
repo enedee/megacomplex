@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgqaqvwik82gk"
-path.s3tc="res://.godot/imported/glass_transparent.png-96c54f9139cbbc74471b5cddeb3fde17.s3tc.ctex"
+uid="uid://c0uf02mfbvpb7"
+path.s3tc="res://.godot/imported/glass_light.png-eefe852c57ea466ba4a2dff6a780f93d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/glass_transparent.png"
-dest_files=["res://.godot/imported/glass_transparent.png-96c54f9139cbbc74471b5cddeb3fde17.s3tc.ctex"]
+source_file="res://textures/glass_light.png"
+dest_files=["res://.godot/imported/glass_light.png-eefe852c57ea466ba4a2dff6a780f93d.s3tc.ctex"]
 
 [params]
 
