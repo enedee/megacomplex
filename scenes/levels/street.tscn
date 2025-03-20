@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b77vuiw8b5ta"]
+[gd_scene load_steps=49 format=3 uid="uid://b77vuiw8b5ta"]
 
 [ext_resource type="Script" uid="uid://bo55kfstb7syw" path="res://scripts/base_scene.gd" id="1_2uqum"]
 [ext_resource type="Shader" uid="uid://cp4ks2sbvt6h3" path="res://shaders/pixel_art.gdshader" id="2_4fpyd"]
@@ -13,6 +13,7 @@
 [ext_resource type="Material" uid="uid://jqg5au00uesf" path="res://mats/sidewalk.tres" id="7_q3tp4"]
 [ext_resource type="Material" uid="uid://fr6ocfuyyyqg" path="res://mats/fence.tres" id="8_0cw2f"]
 [ext_resource type="Texture2D" uid="uid://grfglm6eym6i" path="res://textures/complex_entrance.png" id="8_ffb22"]
+[ext_resource type="Texture2D" uid="uid://ca7jhu61hegyf" path="res://textures/logo.png" id="13_s3amv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ctlxj"]
 shader = ExtResource("2_4fpyd")
@@ -37,6 +38,7 @@ tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.0431373, 0.0666667, 0.278431, 1)
+fog_density = 0.005
 fog_sky_affect = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_0lly4"]
@@ -136,6 +138,19 @@ size = Vector3(4.2, 2.3, 3.4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tgoru"]
 size = Vector3(0.3, 2.2, 7.9)
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ffb22"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg7wr"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("13_s3amv")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n3r23"]
+material = SubResource("StandardMaterial3D_dg7wr")
+size = Vector2(4, 2)
+
 [node name="street" type="Node3D"]
 script = ExtResource("1_2uqum")
 
@@ -152,6 +167,12 @@ transform = Transform3D(-0.822144, 0.493011, -0.28464, 1.2708e-09, 0.5, 0.866025
 light_color = Color(0.419253, 0.3976, 0.56, 1)
 shadow_enabled = true
 directional_shadow_mode = 0
+
+[node name="Player" parent="." instance=ExtResource("2_jnw02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 1.5, 7.4)
+
+[node name="Camera3D" parent="Player/Head" index="0"]
+current = true
 
 [node name="Greybox" type="Node3D" parent="."]
 
@@ -1501,9 +1522,6 @@ mesh = SubResource("PlaneMesh_s3amv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence4/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="Player" parent="." instance=ExtResource("2_jnw02")]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -2.8, 1.5, 7)
-
 [node name="scene_trigger" parent="." instance=ExtResource("3_vesum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9, 1.8, -5.5)
 collision_layer = 0
@@ -1561,5 +1579,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.8, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="invisible_wall2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.12, 1.6, -2)
 shape = SubResource("BoxShape3D_tgoru")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 1.56853e-07, 8.9407e-08, -1.38945e-07, 0.984808, -0.173648, -1.15286e-07, 0.173648, 0.984808, 2.9, 19.4, 119.7)
+attributes = SubResource("CameraAttributesPractical_ffb22")
+fov = 40.0
+far = 2947.59
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 6.74462e-08, 2.4626e-07, 2.4626e-07, 1.49012e-07, -0.999999, -6.74461e-08, 0.999999, 1.49012e-07, -1.4, 0.835178, -7.35686)
+mesh = SubResource("PlaneMesh_n3r23")
 
 [editable path="Player"]
