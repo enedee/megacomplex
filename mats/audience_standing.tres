@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cer840px4uar6"]
+
+[ext_resource type="Texture2D" uid="uid://c7cqrd7dc7frw" path="res://textures/audience_standing.png" id="1_rmhqx"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_rmhqx")
+texture_filter = 0
