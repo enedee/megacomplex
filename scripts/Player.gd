@@ -1,10 +1,10 @@
 class_name Player extends CharacterBody3D
 
 #input variables
-const SPEED = 5.0
+const SPEED = 3.3
 const JUMP_VELOCITY = 3.5
 const SENSITIVITY = 0.003
-
+const JUMP_ACCEL = 5.0
 #headbobbing vars
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
@@ -39,6 +39,9 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		if !is_on_floor():
+			velocity.x = direction.x * JUMP_ACCEL
+			velocity.z = direction.z * JUMP_ACCEL
 	else:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * 11.0)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 11.0)
