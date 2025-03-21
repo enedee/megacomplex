@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dapp6yedmxv2p"]
+[gd_scene load_steps=47 format=4 uid="uid://dapp6yedmxv2p"]
 
 [ext_resource type="Script" uid="uid://bo55kfstb7syw" path="res://scripts/base_scene.gd" id="1_gn4i8"]
 [ext_resource type="Shader" uid="uid://cp4ks2sbvt6h3" path="res://shaders/pixel_art.gdshader" id="2_dlw06"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://grfglm6eym6i" path="res://textures/complex_entrance.png" id="5_unyho"]
 [ext_resource type="Material" uid="uid://x17hcd8hp7g" path="res://mats/light.tres" id="6_uk615"]
 [ext_resource type="Texture2D" uid="uid://djm1fcrfqd7a4" path="res://textures/door_venue.png" id="9_vscnt"]
+[ext_resource type="AudioStream" uid="uid://dn5br05dyxwrn" path="res://sounds/venue_ambiance.mp3" id="13_ipbav"]
+[ext_resource type="AudioStream" uid="uid://cwq3oon6ldt2t" path="res://sounds/light_buzz.mp3" id="14_l71cr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4tail"]
 shader = ExtResource("2_dlw06")
@@ -526,7 +528,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 1, -13.7)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.8, -14.4)
 
 [node name="floor_venue" type="Marker3D" parent="entrance_markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 1.1, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, -3)
 
 [node name="dust" parent="." instance=ExtResource("4_wao7n")]
 amount = 124
@@ -534,5 +536,48 @@ process_material = SubResource("ParticleProcessMaterial_ux76g")
 
 [node name="Player" parent="." instance=ExtResource("5_ujjnd")]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 1.1, 9.3)
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="venue_door" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 1, -3)
+stream = ExtResource("13_ipbav")
+unit_size = 2.55
+autoplay = true
+stream_paused = true
+max_distance = 4.5
+attenuation_filter_db = -40.8
+
+[node name="light_buzz" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3.7, 7.8)
+stream = ExtResource("14_l71cr")
+volume_db = -13.0
+unit_size = 7.81
+autoplay = true
+max_distance = 15.0
+
+[node name="light_buzz2" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3.7, 1.5)
+stream = ExtResource("14_l71cr")
+volume_db = -13.0
+unit_size = 7.81
+autoplay = true
+max_distance = 15.0
+
+[node name="light_buzz3" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3.7, -5.2)
+stream = ExtResource("14_l71cr")
+volume_db = -13.0
+unit_size = 7.81
+autoplay = true
+max_distance = 15.0
+
+[node name="light_buzz4" type="AudioStreamPlayer3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 3.7, -11.5)
+stream = ExtResource("14_l71cr")
+volume_db = -13.0
+unit_size = 7.81
+autoplay = true
+max_distance = 15.0
 
 [editable path="dust"]

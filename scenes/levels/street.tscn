@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b77vuiw8b5ta"]
+[gd_scene load_steps=51 format=3 uid="uid://b77vuiw8b5ta"]
 
 [ext_resource type="Script" uid="uid://bo55kfstb7syw" path="res://scripts/base_scene.gd" id="1_2uqum"]
 [ext_resource type="Shader" uid="uid://cp4ks2sbvt6h3" path="res://shaders/pixel_art.gdshader" id="2_4fpyd"]
@@ -14,6 +14,8 @@
 [ext_resource type="Material" uid="uid://fr6ocfuyyyqg" path="res://mats/fence.tres" id="8_0cw2f"]
 [ext_resource type="Texture2D" uid="uid://grfglm6eym6i" path="res://textures/complex_entrance.png" id="8_ffb22"]
 [ext_resource type="Texture2D" uid="uid://ca7jhu61hegyf" path="res://textures/logo.png" id="13_s3amv"]
+[ext_resource type="AudioStream" uid="uid://cwq3oon6ldt2t" path="res://sounds/light_buzz.mp3" id="15_dg7wr"]
+[ext_resource type="AudioStream" uid="uid://dna1lgynfavus" path="res://sounds/ambiance_street.mp3" id="16_n3r23"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ctlxj"]
 shader = ExtResource("2_4fpyd")
@@ -22,14 +24,14 @@ shader = ExtResource("2_4fpyd")
 size = Vector2(1024, 768)
 center_offset = Vector3(512, 384, 0)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dyue7"]
-sky_top_color = Color(0.042, 0.0658, 0.28, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n3r23"]
+sky_top_color = Color(0.039, 0.0611, 0.26, 1)
 sky_horizon_color = Color(0.044605, 0.0143, 0.11, 1)
-ground_bottom_color = Color(0.0431373, 0.0666667, 0.278431, 1)
+ground_bottom_color = Color(0.0392157, 0.0627451, 0.258824, 1)
 ground_horizon_color = Color(0.0147, 0.0358983, 0.07, 1)
 
 [sub_resource type="Sky" id="Sky_ipcjt"]
-sky_material = SubResource("ProceduralSkyMaterial_dyue7")
+sky_material = SubResource("ProceduralSkyMaterial_n3r23")
 
 [sub_resource type="Environment" id="Environment_tisni"]
 background_mode = 2
@@ -38,7 +40,6 @@ tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.0431373, 0.0666667, 0.278431, 1)
-fog_density = 0.005
 fog_sky_affect = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_0lly4"]
@@ -81,7 +82,7 @@ albedo_color = Color(1, 0.46, 0.46, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_0lly4"]
 material = SubResource("StandardMaterial3D_0lly4")
-left_to_right = -0.6
+left_to_right = -0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cw2f"]
 albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
@@ -167,6 +168,8 @@ transform = Transform3D(-0.822144, 0.493011, -0.28464, 1.2708e-09, 0.5, 0.866025
 light_color = Color(0.419253, 0.3976, 0.56, 1)
 shadow_enabled = true
 directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 200.0
 
 [node name="Player" parent="." instance=ExtResource("2_jnw02")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 1.5, 7.4)
@@ -174,1352 +177,1346 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 1.5, 7.4)
 [node name="Camera3D" parent="Player/Head" index="0"]
 current = true
 
-[node name="Greybox" type="Node3D" parent="."]
+[node name="level" type="Node3D" parent="."]
 
-[node name="Background_Buildings" type="Node3D" parent="Greybox"]
+[node name="Background_Buildings" type="Node3D" parent="level"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2, 9.1, 56.1)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.1, 10.1, 60.7)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.1, 0.7, 54.2)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.9, 7.5, 44.2)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.8, 2.7, 32.1)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 1.4, 65.4)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8, 9.6, 57.3)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.7, 7.8, 42.3)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86, 7.8, 55.7)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.9, 9.4, 65.3)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.7, 0.6, 65.3)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.8, 9.1, -116.164)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D13" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -52.7, 10.1, -120.764)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D14" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -78.7, 0.7, -114.264)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D15" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -112.5, 7.5, -104.264)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D16" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -136.4, 2.7, -92.1636)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D17" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.8, 1.4, -125.464)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D18" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30.2, 9.6, -117.364)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D19" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 56.1, 7.8, -102.364)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D20" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 86.4, 7.8, -115.764)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D21" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 109.3, 9.4, -125.364)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D22" type="MeshInstance3D" parent="Greybox/Background_Buildings"]
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="level/Background_Buildings"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 136.1, 0.6, -125.364)
 mesh = SubResource("BoxMesh_0lly4")
 skeleton = NodePath("../..")
 
-[node name="Lights" type="Node3D" parent="Greybox"]
+[node name="Lights" type="Node3D" parent="level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.85, 100.5, -29.85)
 
-[node name="Streetlight_Dual" parent="Greybox/Lights" instance=ExtResource("3_vyr6p")]
+[node name="Streetlight_Dual" parent="level/Lights" instance=ExtResource("3_vyr6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.25, -100.6, 24.15)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight_Dual"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight_Dual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 6, 10.6)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Lights/Streetlight_Dual"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/Lights/Streetlight_Dual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 6, 10.6)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.85, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight2" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight2" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.45, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight3" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight3" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.25, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight4" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight4" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.75, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight5" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight5" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.45, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight6" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight6" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.45, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Streetlight7" parent="Greybox/Lights" instance=ExtResource("7_0i6we")]
+[node name="Streetlight7" parent="level/Lights" instance=ExtResource("7_0i6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.35, -100.6, 29.85)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Streetlight7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Streetlight7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.4)
 mesh = SubResource("PlaneMesh_0cw2f")
 
-[node name="Building_Lights" type="Node3D" parent="Greybox/Lights"]
+[node name="Building_Lights" type="Node3D" parent="level/Lights"]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -96.8, 25.5)
+[node name="OmniLight3D" type="OmniLight3D" parent="level/Lights/Building_Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -96, 25)
 light_color = Color(1, 0.874333, 0.74, 1)
-shadow_enabled = true
-omni_range = 13.055
-omni_attenuation = 0.65
+light_energy = 2.0
+omni_range = 11.374
+omni_attenuation = -0.256
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Lights/Building_Lights/OmniLight3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Lights/Building_Lights/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3, 0.4)
 mesh = SubResource("PlaneMesh_q3tp4")
 
-[node name="OmniLight3D146" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -96.2, 25.5)
-light_color = Color(1, 0.874333, 0.74, 1)
-shadow_enabled = true
-omni_range = 13.055
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D147" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D147" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, -87.1, 71.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D148" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D148" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, -93.4, 69)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D149" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D149" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, -93.4, 69)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D150" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D150" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.2, -87.3, 59.2)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D151" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D151" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2, -83.5, 75.7)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D152" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D152" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.7, -85.3, 72.7)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D153" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D153" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6, -85.3, 72.7)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D154" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D154" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.2, -85.3, 70.9)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D155" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D155" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.9, -85.3, 70.9)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D156" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D156" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.9, -91, 70.9)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D157" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D157" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.8, -87.5, 58.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D158" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D158" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -92.1, -87.1, -71.8818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D159" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D159" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -114.2, -93.4, -69.7818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D160" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D160" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -137.2, -93.4, -69.7818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D161" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D161" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -148.9, -87.3, -59.9818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D162" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D162" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -115.9, -83.5, -76.4818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D163" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D163" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16, -85.3, -73.4818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D164" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D164" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -31.1, -85.3, -73.4818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D165" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D165" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.5, -85.3, -71.6818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D166" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D166" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37.2, -85.3, -71.6818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D167" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D167" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 37.2, -91, -71.6818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D168" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D168" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.1, -87.5, -58.8818)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D4" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D5" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D6" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D7" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D8" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D8" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D9" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D9" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D10" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D10" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D11" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D11" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D12" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D12" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D13" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D13" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D14" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D14" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D15" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D15" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D16" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D16" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D17" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D17" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D18" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D18" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D19" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D19" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D20" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D20" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D21" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D21" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D22" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D22" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D23" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D23" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D24" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D24" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D25" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D25" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D26" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D26" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D27" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D27" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D28" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D28" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D29" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D29" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D30" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D30" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D31" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D31" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D32" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D32" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D33" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D33" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D34" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D34" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D35" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D35" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D36" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D36" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D37" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D37" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D38" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D38" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D39" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D39" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D40" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D40" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D41" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D41" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D42" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D42" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D43" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D43" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D44" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D44" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D45" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D45" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D46" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D46" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D47" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D47" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D48" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D48" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D49" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D49" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D50" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D50" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D51" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D51" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D52" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D52" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D53" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D53" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D54" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D54" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D55" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D55" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D56" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D56" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D57" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D57" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D58" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D58" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D59" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D59" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D60" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D60" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D61" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D61" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D62" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D62" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D63" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D63" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D64" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D64" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D65" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D65" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D66" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D66" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D67" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D67" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D68" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D68" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D69" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D69" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D70" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D70" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D71" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D71" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D72" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D72" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D73" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D73" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D74" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D74" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D75" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D75" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D76" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D76" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D77" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D77" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D78" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D78" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D79" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D79" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D80" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D80" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D81" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D81" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D82" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D82" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D83" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D83" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D84" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D84" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D85" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D85" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D86" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D86" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D87" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D87" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D88" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D88" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D89" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D89" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D90" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D90" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D91" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D91" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D92" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D92" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D93" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D93" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D94" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D94" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -74, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D95" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D95" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D96" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D96" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D97" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D97" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -63.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D98" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D98" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D99" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D99" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D100" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D100" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -52.8, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D101" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D101" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D102" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D102" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D103" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D103" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -42.2, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D104" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D104" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D105" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D105" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D106" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D106" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -32, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D107" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D107" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D108" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D108" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D109" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D109" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -21, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D110" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D110" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D111" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D111" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D112" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D112" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D113" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D113" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D114" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D114" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D115" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D115" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D116" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D116" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D117" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D117" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D118" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D118" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D119" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D119" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D120" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D120" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D121" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D121" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D122" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D122" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D123" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D123" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D124" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D124" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D125" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D125" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D126" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D126" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D127" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D127" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D128" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D128" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D129" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D129" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D130" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D130" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -10.3, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D131" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D131" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D132" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D132" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D133" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D133" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, -0.0999985, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D134" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D134" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D135" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D135" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D136" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D136" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 10.9, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D137" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D137" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D138" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D138" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D139" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D139" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 21.5, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D140" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D140" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D141" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D141" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D142" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D142" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 31.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D143" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D143" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D144" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D144" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="OmniLight3D145" type="OmniLight3D" parent="Greybox/Lights/Building_Lights"]
+[node name="OmniLight3D145" type="OmniLight3D" parent="level/Lights/Building_Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9, 42.7, 25.1)
 light_color = Color(1, 0.874333, 0.74, 1)
 omni_range = 3.0
 omni_attenuation = -1.308
 
-[node name="Ground" type="MeshInstance3D" parent="Greybox"]
+[node name="Ground" type="MeshInstance3D" parent="level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("PlaneMesh_f0o4y")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Ground"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Ground/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Ground/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("BoxShape3D_skjwx")
 
-[node name="Building" type="MeshInstance3D" parent="Greybox"]
+[node name="Building" type="MeshInstance3D" parent="level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.85, 100.5, -29.85)
 mesh = SubResource("BoxMesh_uttk1")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Building"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Building"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Building/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Building/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -85.75, 0)
 shape = SubResource("BoxShape3D_irtjy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Building"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Building"]
 transform = Transform3D(-5.68248e-08, 0, -4.4, 0, 1, 0, 1.3, 0, -1.9233e-07, 0, -96.4, 25.4)
 mesh = SubResource("PrismMesh_0lly4")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Building"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/Building"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, -98.51, 25.6)
 mesh = SubResource("CylinderMesh_q3tp4")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Building"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="level/Building"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, -98.4, 25.6)
 mesh = SubResource("CylinderMesh_q3tp4")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Building"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="level/Building"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.159996, -98.5, 24.71)
 mesh = SubResource("PlaneMesh_dg7wr")
 
-[node name="Street" type="Node3D" parent="Greybox"]
+[node name="Street" type="Node3D" parent="level"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 mesh = SubResource("BoxMesh_ibfs4")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Street/MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Street/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_w1504")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -3.5)
 mesh = SubResource("BoxMesh_ibfs4")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Street/MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Street/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_w1504")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52, -1.8)
 mesh = SubResource("PlaneMesh_pdpkv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Street/MeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Street/MeshInstance3D3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Street/MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Street/MeshInstance3D3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("BoxShape3D_uke5f")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.5, 5.7)
 mesh = SubResource("BoxMesh_ffb22")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.5, 1.35)
 mesh = SubResource("BoxMesh_q3tp4")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.5, 1.35)
 mesh = SubResource("BoxMesh_q3tp4")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 0.5, -4.55)
 mesh = SubResource("BoxMesh_q3tp4")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.5, -4.55)
 mesh = SubResource("BoxMesh_q3tp4")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="Greybox/Street"]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="level/Street"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 0.5, -4.55)
 mesh = SubResource("BoxMesh_q3tp4")
 
-[node name="Fences" type="Node3D" parent="Greybox"]
+[node name="Fences" type="Node3D" parent="level"]
 
-[node name="fence" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(82.313, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -62.52, 1.5, -5.8)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="fence2" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence2" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(32.985, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 112.88, 1.5, -5.8)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence2/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="fence5" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence5" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(-1.74846e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 4, 4.37114e-08, 1.91069e-15, -6.02, 1.5, 5.94)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence5/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="fence7" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence7" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(-4, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -3.49691e-07, 1, 4.37114e-08, -2.02, 1.5, 9.94)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence7"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence7/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="fence6" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence6" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(-1.74846e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 4, 4.37114e-08, 1.91069e-15, 1.98, 1.5, 5.94)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence6"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence6/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="fence3" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence3" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(69.1429, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 69.84, 1.5, 1.8)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence3/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
-[node name="fence4" type="MeshInstance3D" parent="Greybox/Fences"]
+[node name="fence4" type="MeshInstance3D" parent="level/Fences"]
 transform = Transform3D(69.2685, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -71.39, 1.5, 1.8)
 mesh = SubResource("PlaneMesh_s3amv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Greybox/Fences/fence4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/Fences/fence4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Greybox/Fences/fence4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/Fences/fence4/StaticBody3D"]
 shape = SubResource("BoxShape3D_dg7wr")
 
 [node name="scene_trigger" parent="." instance=ExtResource("3_vesum")]
@@ -1589,5 +1586,43 @@ far = 2947.59
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(1, 6.74462e-08, 2.4626e-07, 2.4626e-07, 1.49012e-07, -0.999999, -6.74461e-08, 0.999999, 1.49012e-07, -1.4, 0.835178, -7.35686)
 mesh = SubResource("PlaneMesh_n3r23")
+
+[node name="sounds" type="Node3D" parent="."]
+
+[node name="light_buzz" type="AudioStreamPlayer3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 5.4, 5)
+stream = ExtResource("15_dg7wr")
+volume_db = -7.0
+autoplay = true
+max_distance = 15.0
+
+[node name="light_buzz2" type="AudioStreamPlayer3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 6, -2.5)
+stream = ExtResource("15_dg7wr")
+volume_db = -7.0
+autoplay = true
+max_distance = 15.0
+
+[node name="light_buzz3" type="AudioStreamPlayer3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.07, 6, -2.5)
+stream = ExtResource("15_dg7wr")
+volume_db = -7.0
+autoplay = true
+max_distance = 15.0
+
+[node name="light_buzz4" type="AudioStreamPlayer3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.83, 4.6, -4.3)
+stream = ExtResource("15_dg7wr")
+volume_db = -7.0
+autoplay = true
+max_distance = 15.0
+
+[node name="ambiance" type="AudioStreamPlayer3D" parent="sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.8, 0)
+stream = ExtResource("16_n3r23")
+attenuation_model = 3
+volume_db = 2.0
+autoplay = true
+panning_strength = 0.0
 
 [editable path="Player"]
